@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div id="main-menu">
+        <h1>2048</h1>
+        <button class="menu-button" id="play-button">Play</button>
+        <button class="menu-button" id="scoreboard-button">Scoreboard</button>
+        <button class="menu-button" id="how-to-play-button">How to Play?</button>
+        <button class="menu-button" id="credits-button">Credits</button>
+        <div id="audio-bar">
+            <button class="audio-button" id="audio-play-button"><i class="fas fa-play"></i></button>
+            <div class="volume-container">
+                <input type="range" id="sound-volume-main" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
+                <span id="volume-percentage-main" class="volume-percentage">50%</span>
+            </div>
+        </div>
+    </div>
+    
+    <div id="game-container" class="hidden">
+        <div id="top-bar">
+            <div id="game-menu-button">☰</div>
+            <div id="audio-bar">
+                <button class="audio-button" id="audio-play-button-ingame"><i class="fas fa-play"></i></button>
+                <div class="volume-container">
+                    <input type="range" id="sound-volume-ingame" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
+                    <span id="volume-percentage-ingame" class="volume-percentage">50%</span>
+                </div>
+            </div>
+        </div>
+        <div id="grid-container"></div>
+        <div id="bottom-bar">
+            <div id="score">Score: 0</div>
+            <div id="timer">Time: 00:00</div>
+        </div>
+    </div>
+
+    <div id="win-screen" class="hidden">
+        <h2>You WIN!</h2>
+        <p id="win-score"></p>
+        <button class="menu-button" id="win-menu-button">Main Menu</button>
+        <div id="audio-bar">
+            <button class="audio-button" id="audio-play-button-win"><i class="fas fa-play"></i></button>
+            <div class="volume-container">
+                <input type="range" id="sound-volume-win" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
+                <span id="volume-percentage-win" class="volume-percentage">50%</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="lose-screen" class="hidden">
+        <h2>Game Over!</h2>
+        <p id="lose-score"></p>
+        <button class="menu-button" id="lose-menu-button">Main Menu</button>
+        <div id="audio-bar">
+            <button class="audio-button" id="audio-play-button-lose"><i class="fas fa-play"></i></button>
+            <div class="volume-container">
+                <input type="range" id="sound-volume-lose" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
+                <span id="volume-percentage-lose" class="volume-percentage">50%</span>
+            </div>
+        </div>
+    </div>
+    
+    <div id="scoreboard-menu" class="hidden">
+        <h2>Scoreboard</h2>
+        <div id="scoreboard"></div>
+        <button class="menu-button" id="scoreboard-back-button">Back</button>
+        <div id="audio-bar">
+            <button class="audio-button" id="audio-play-button-scoreboard"><i class="fas fa-play"></i></button>
+            <div class="volume-container">
+                <input type="range" id="sound-volume-scoreboard" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
+                <span id="volume-percentage-scoreboard" class="volume-percentage">50%</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="ingame-options-menu" class="hidden">
+        <button class="menu-button" id="restart-button">Restart</button>
+        <button class="menu-button" id="ingame-main-menu-button">Main Menu</button>
+        <button class="menu-button" id="ingame-options-back-button">Back to Game</button>
+    </div>
+
+    <div id="how-to-play-menu" class="hidden">
+        <h2>How to Play 2048</h2>
+        <p>2048 is a sliding tile puzzle game. The objective is to combine tiles with the same number to reach the 2048 tile.</p>
+        <p>Use the arrow keys to move tiles:</p>
+        <ul>
+            <li>Up Arrow: Move tiles up</li>
+            <li>Down Arrow: Move tiles down</li>
+            <li>Left Arrow: Move tiles left</li>
+            <li>Right Arrow: Move tiles right</li>
+        </ul>
+        <p>When two tiles with the same number touch, they merge into one with the sum of their numbers. For example, 2 + 2 = 4, 4 + 4 = 8, and so on.</p>
+        <button class="menu-button" id="how-to-play-back-button">Back</button>
+        <div id="audio-bar">
+            <button class="audio-button" id="audio-play-button-how-to-play"><i class="fas fa-play"></i></button>
+            <div class="volume-container">
+                <input type="range" id="sound-volume-how-to-play" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
+                <span id="volume-percentage-how-to-play" class="volume-percentage">50%</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="credits-menu" class="hidden">
+        <h1>2048</h1>
+        <p><strong>Produced by</strong><br>Emre KANAT</p>
+        <p><strong>Music by</strong><br>Daniel "C418" Rosenfeld</p>
+        <p><strong>For collaboration:</strong><br>ekanatx@gmail.com</p>
+        <button class="menu-button" id="credits-back-button">Back</button>
+        <div id="audio-bar">
+            <button class="audio-button" id="audio-play-button-credits"><i class="fas fa-play"></i></button>
+            <div class="volume-container">
+                <input type="range" id="sound-volume-credits" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
+                <span id="volume-percentage-credits" class="volume-percentage">50%</span>
+            </div>
+        </div>
+    </div>
+
+    <audio id="background-music" src="background-music.mp3" loop></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
